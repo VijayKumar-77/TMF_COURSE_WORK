@@ -1,4 +1,3 @@
-package com.sat.tmf.paymentscli.entity;
 
 public enum AcctType {
 	SAVINGS,
