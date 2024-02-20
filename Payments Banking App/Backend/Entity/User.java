@@ -1,4 +1,3 @@
-package com.sat.tmf.paymentscli.entity;
 
 import java.util.ArrayList;
 import java.util.List;
