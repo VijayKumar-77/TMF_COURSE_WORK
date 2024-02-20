@@ -1,4 +1,4 @@
-package com.sat.tmf.paymentscli;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,9 +6,6 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
-import com.sat.tmf.paymentscli.entity.AcctType;
-import com.sat.tmf.paymentscli.entity.BankAccount;
-import com.sat.tmf.paymentscli.entity.User;
 
 public class RunPaymentsApp {
 	//Driver class
