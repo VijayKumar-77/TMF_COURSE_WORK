@@ -1,11 +1,10 @@
-package com.sat.tmf.paymentscli;
+
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.sat.tmf.paymentscli.entity.BankAccount;
-import com.sat.tmf.paymentscli.entity.User;
+
 
 public class UserOperations {
 	
