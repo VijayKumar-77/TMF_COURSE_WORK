@@ -11,11 +11,36 @@ Collection Framework
 	Null Elements
 	Synchronized
 	ArrayList
-	* 	* 	* 	* 	* 	HashSet
-	* 	* 	* 	* 	* 	TreeSet
-	* 	* 	* 	* 	* 	LinkedHashSet
-	* 	* 	* 	* 	* 	LinkedList
-	* 	* 	* 	* 	* 	
+	       YES
+	        YES
+	       NO
+	       YES
+	         NO
+	HashSet
+	       NO
+	        NO
+	       NO
+	       YES
+	         NO
+	TreeSet
+	       NO
+	        NO
+	       YES
+	       NO
+	         NO
+	LinkedHashSet
+	       YES
+	 YES
+	       NO
+	       NO
+	         NO
+	LinkedList
+	       YES
+	 YES
+	       NO
+	       NO
+	         NO
+	
 
 16/02/24
 
