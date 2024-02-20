@@ -3,44 +3,20 @@
 
 19/02/24
 
+Collection Framework    Insertion Order    Duplicate Order    Sorted at Insertion    Null Elements    Synchronized
 
-Collection Framework
-	Insertion Order
-	Duplicate Order
-	Sorted at Insertion
-	Null Elements
-	Synchronized
-	ArrayList
-	       YES
-	        YES
-	       NO
-	       YES
-	         NO
-	HashSet
-	       NO
-	        NO
-	       NO
-	       YES
-	         NO
-	TreeSet
-	       NO
-	        NO
-	       YES
-	       NO
-	         NO
-	LinkedHashSet
-	       YES
-	 YES
-	       NO
-	       NO
-	         NO
-	LinkedList
-	       YES
-	 YES
-	       NO
-	       NO
-	         NO
-	
+     ArrayList                YES                YES                   NO                 YES              NO             
+                
+     HashSet                  NO                  NO                   NO                 YES              NO         
+      
+     TreeSet                  NO                  NO                   YES                NO               NO      
+      
+     LinkedHashSet            YES                 YES                  NO                 NO               NO         
+       
+     LinkedList               YES                 YES                  NO                 NO               NO            
+       
+
+
 
 16/02/24
 
