@@ -1,4 +1,4 @@
-package com.sat.tmf.paymentscli.entity;
+
 
 public class BankAccount {
 	
