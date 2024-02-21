@@ -7,7 +7,9 @@ import java.util.Scanner;
 import java.util.Set;
 
 
-public class RunPaymentsApp {
+
+public class RunPaymentsApp extends WalletOperations
+{
 	//Driver class
 
 //	static int x=10;
@@ -20,7 +22,7 @@ public class RunPaymentsApp {
 		
 		int selectedOption=0;		
 		Scanner opt = new Scanner(System.in);
-				
+		
 		while(true) {
 			
 			System.out.println("Payments App Actions:");
@@ -30,6 +32,8 @@ public class RunPaymentsApp {
 			System.out.println("4. List of Users");
 			System.out.println("5. Current User");
 			System.out.println("6. List All User Bank Accounts");
+			System.out.println("7. Add Money To Wallet");
+			System.out.println("8. Delet the BankAccount");
 			System.out.println("-1. Quit/ Logout");
 			System.out.println("Choose an Option:");
 			
@@ -77,11 +81,26 @@ public class RunPaymentsApp {
 				if(currUserId != -1) {
 					printUserBAnkAcctsList();
 				}
-			}else if(optStr.equalsIgnoreCase("-1")) {
+			}
+			else if(optStr.equalsIgnoreCase("7"))
+			{
+				if(currUserId != -1) {
+				walletTransactions(currUserId);
+				}
+			}
+			else if(optStr.equalsIgnoreCase("8"))
+			{
+				if(currUserId != -1) {
+					System.out.println(bankAcctList);
+					}
+				
+			}
+			else if(optStr.equalsIgnoreCase("-1")) {
 				break;
 			}else {
 				
 			}
+			
 		}
 	}
 	
@@ -105,7 +124,9 @@ public class RunPaymentsApp {
 		
 		User u;
 		try {
+			
 			u = ops.doUserRegistration(fName, lName, password, phNo, dob, addr);
+			
 			usersList.add(u);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -189,5 +210,28 @@ public class RunPaymentsApp {
 			}
 			
 		}
+	}
+	
+	public static void walletTransactions(int userid)
+	{
+		Scanner sc=new Scanner(System.in);
+		Wallet w=new Wallet();
+		
+		w.setUserId(currUserId);
+		System.out.println("Enter amount to add:");
+		int amount=sc.nextInt();
+		int FinalBalance=0;
+		if(userid==w.getUserId())
+		{
+			
+	        int b=AddMoney(amount);
+			
+			System.out.println("Money added to wallet : "+b);
+			
+			
+	
+		}
+		
+		
 	}
 }
