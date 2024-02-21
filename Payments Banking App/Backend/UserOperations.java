@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 
-
 public class UserOperations {
 	
 	List<User> users = null;
@@ -30,6 +29,8 @@ public class UserOperations {
 		}
 		
 		u.setUserId((int)(Math.random()*1000)+100);
+		PaymentsFileOps pfOps = new PaymentsFileOps();
+		pfOps.writeUserToFile(u);
 		return u;
 	}
 	
@@ -82,5 +83,6 @@ public class UserOperations {
 		return userBankAcctMap;
 		
 	}
+	
 
 }
