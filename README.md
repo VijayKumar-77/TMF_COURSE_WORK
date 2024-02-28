@@ -9,13 +9,13 @@
 
 <p align="left"> <a href="https://twitter.com/alone_its_me" target="blank"><img src="https://img.shields.io/twitter/follow/alone_its_me?logo=twitter&style=for-the-badge" alt="alone_its_me" /></a> </p>
 
-🔭 I’m currently working on -- **Payments Banking APP**
+🔭 I’m currently working on    **Payments Banking APP**
 
-🌱 I’ve learned -- **Frameworks, React, Core JAVA, SQL, SpringBoot, Angular**
+🌱 I’ve learned    **Frameworks, React, Core JAVA, SQL, SpringBoot, Angular**
 
-📫 How to reach me -- **vijaykumarmetoo@gmail.com**
+📫 How to reach me    **vijaykumarmetoo@gmail.com**
 
-⚡ Fun fact -- **Stay and be Like U**
+⚡ Fun fact    **Stay and be Like U**
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
