@@ -5,13 +5,7 @@
                   ----------// JAVA - FULL - STACK - DEVELOPER - COURSE //----------
                                                                          
                                                                          
-                                                                         
-                                                                         
-                                                                      
-                                                                         
-                                                                        
-<h1 align="center">Hi 👋, I'm V. VIJAY KUMAR</h1>
-<h3 align="center">A passionate Full Stack Developer....</h3>
+                                                              
 
 <p align="left"> <a href="https://twitter.com/alone_its_me" target="blank"><img src="https://img.shields.io/twitter/follow/alone_its_me?logo=twitter&style=for-the-badge" alt="alone_its_me" /></a> </p>
 
