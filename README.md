@@ -11,7 +11,7 @@
 
 🔭 I’m currently working on    **Payments Banking APP**
 
-🌱 I’ve learned    **Frameworks, React, Core JAVA, SQL, SpringBoot, Angular**
+🌱 I’ve learned &nbsp;&nbsp;&nbsp;&nbsp; **Frameworks, React, Core JAVA, SQL, SpringBoot, Angular**
 
 📫 How to reach me    **vijaykumarmetoo@gmail.com**
 
