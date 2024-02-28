@@ -9,7 +9,7 @@
                                                                          
                                                                       
                                                                          
-                                                                         <h1 align="center">Hi 👋, I'm V. VIJAY KUMAR</h1>
+                                                                        
 <h3 align="center">A passionate Full Stack Developer....</h3>
 
 <p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=vijju-7" alt="vijju-7" /></a> </p>
