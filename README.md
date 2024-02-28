@@ -2,7 +2,7 @@
                                                                      
                                                                      
                                                                     
-                  ----------// JAVA - FULL - STACK - DEVELOPER - COURSE //----------
+                  ----------// A - PASSIONATE - JAVA - FULL - STACK - DEVELOPER  //----------
                                                                          
                                                                          
                                                               
