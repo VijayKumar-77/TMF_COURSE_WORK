@@ -8,8 +8,7 @@ public class UserOperations {
 	
 	List<User> users = null;
 	List<BankAccount> bankAcctList = null;
-	Map<Integer,Wallet>WalletList=RunPaymentsApp.ListWallet;
-	
+	  private static Map<Integer, Wallet> userWallets = new HashMap<>();
 	public UserOperations() {
 		users= RunPaymentsApp.usersList;
 		bankAcctList = RunPaymentsApp.bankAcctList;
@@ -100,79 +99,87 @@ public class UserOperations {
 	    }
 	    System.out.println("User not found.");
 	}
-	public void AddMoneyToWallet(double Amount)
-	{
-		if(WalletList.containsKey(RunPaymentsApp.currUserId)) {
-			WalletList.get(RunPaymentsApp.currUserId).setCurrntBal(WalletList.get(RunPaymentsApp.currUserId).getCurrntBal()+Amount);
-			System.out.println("Your Current Balance in your wallet : "+WalletList.get(RunPaymentsApp.currUserId).getCurrntBal());
-			
-		}
-	}
-	public double checkWalletBalance(){
-		System.out.println("Your Current Balance in Your Wallet : ");
-		return WalletList.get(RunPaymentsApp.currUserId ).getCurrntBal();
-	}
-	public void DoTransaction()
-	{
-		Scanner sc = new Scanner(System.in);
-		Transaction txn = new Transaction();
-		Wallet w = new Wallet();
-        User u = new User();
-        System.out.println("Select The Option to Send Money From Which Account: ");
-        try
-        {
-        	String srcType=sc.next();
-        	TransactionSource srccType=TransactionSource.valueOf(srcType);
-        	txn.setTrnxsrc(srccType);
+
+
+public static void addMoneyToWallet(int userId, double amount) {
+		 Wallet wallet = userWallets.getOrDefault(userId, new Wallet());
+		 wallet.setLimit(50000);
+		    if (wallet.getCurrntBal() + amount <= wallet.getLimit()) {
+		        wallet.setCurrntBal(wallet.getCurrntBal() + amount);
+		        userWallets.put(userId, wallet);
+		        System.out.println("New wallet balance for user " + userId + " is: " + wallet.getCurrntBal());
+		        
+		        
+		        
+		    }
+		    
+		    else {
+		        System.out.println("Maximum wallet amount is " + wallet.getLimit());
+		    }
+    }
+public double checkWalletBalance(int userId){
+    Wallet wallet = userWallets.get(userId);
+    if (wallet != null) {
+        return wallet.getCurrntBal();
+    } else {
+        return 0;
+    }
+}
+
+public void DoTransaction() {
+	
+    Scanner sc = new Scanner(System.in);
+    Transaction txn = new Transaction();
+    System.out.println("Select The Option to Send Money From Which Account: ");
+    try {
+        String srcType = sc.next();
+        TransactionSource srccType = TransactionSource.valueOf(srcType);
+        txn.setTrnxsrc(srccType);
+    } catch (IllegalArgumentException e) {
+        e.printStackTrace();
+    }
+
+    if (txn.getTrnxsrc() == TransactionSource.CASH) {
+    	
+        double amt = sc.nextDouble();
+        int uId=sc.nextInt();
+        for (User user : users) {
+            if (user.getUserId() == uId) {
+                Wallet w = user.getWallet();
+                w.setCurrntBal(w.getCurrntBal() + amt);
+                System.out.println(w.getCurrntBal());
+            }
         }
-        catch (IllegalArgumentException e)
-        {
-        	e.printStackTrace();
-        }
-        if(txn.getTrnxsrc()==TransactionSource.CASH)
-        {
-        	double amt=sc.nextDouble();
-        	long phno=sc.nextLong();
-        	for(User user:users)
-        	{
-        		if(user.getPhoneNum()==phno)
-        		{
-        			w.setCurrntBal(w.getCurrntBal()+amt);
-        			System.out.println(w.getCurrntBal());
-        			
-        		}
-        	}
+    } else if (txn.getTrnxsrc() == TransactionSource.WALLET) {
+        System.out.println("enter destination type");
+        try {
+            String desType = sc.next();
+            TransactionDestination des = TransactionDestination.valueOf(desType);
+            txn.setTrnxDest(des);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
         }
 
-        else if(txn.getTrnxsrc()==TransactionSource.WALLET)
-        	
-        	
-        {
-        	System.out.println("enter destination type");
-        	try
-        	{
-        		String desType=sc.next();
-        		TransactionDestination des=TransactionDestination.valueOf(desType);
-        		txn.setTrnxDest(des);
-        	}
-        	catch(IllegalArgumentException e)
-        	{
-        		e.printStackTrace();
-        	}
-        	if(txn.getTrnxDest()==TransactionDestination.WALLET)
-        		
-        	{
-        		double amt=sc.nextDouble();
-        		long phno=sc.nextLong();
-        		for(User user:users)
-        		{
-        			if(user.getPhoneNum()==phno)
-        			{
-        				WalletList.get(RunPaymentsApp.currUserId).setCurrntBal(WalletList.get(RunPaymentsApp.currUserId).getCurrntBal()+amt);
-        			}
-        		}
-        	}
+        if (txn.getTrnxDest() == TransactionDestination.WALLET) {
+            double amt = sc.nextDouble();
+            int uId=sc.nextInt();
+            for (User user : users) {
+                if (user.getUserId() == uId) {
+                    Wallet senderWallet = userWallets.get(RunPaymentsApp.currUserId);
+                    if (senderWallet.getCurrntBal() >= amt) {
+                        senderWallet.setCurrntBal(senderWallet.getCurrntBal() - amt);
+                        Wallet receiverWallet = user.getWallet();
+                        receiverWallet.setCurrntBal(receiverWallet.getCurrntBal() + amt);
+                    } else {
+                        System.out.println("Insufficient balance in wallet.");
+                    }
+                }
+            }
+        }
+    }
+}
+
         }
        
-}
-}
+
+
