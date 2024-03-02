@@ -21,7 +21,7 @@ public class RunPaymentsApp
 	public static int currUserId = -1;
  
    
-    public static Map<Integer,Wallet> ListWallet=new HashMap<Integer,Wallet>();
+	 private static Map<Integer, Wallet> userWallets = new HashMap<>();
 	public static void main(String[] args) {
 		
 		int selectedOption=0;		
@@ -38,7 +38,7 @@ public class RunPaymentsApp
 			System.out.println("6. List All User Bank Accounts");
 			System.out.println("7. Add Money To Wallet");
 			System.out.println("8. Delet the BankAccount");
-			System.out.println("9. Check Wallet Balance");
+			System.out.println("9. list User Wallet Balances");
 			System.out.println("10. Do a Transaction");
 			System.out.println("-1. Quit/ Logout");
 			System.out.println("Choose an Option:");
@@ -97,8 +97,11 @@ public class RunPaymentsApp
 			}
 			else if(optStr.equalsIgnoreCase("7"))
 			{
+				UserOperations u1=new UserOperations();
 				if(currUserId != -1) {
-				addMoneyToWallet();
+					Scanner sc=new Scanner(System.in);
+					double amount=sc.nextDouble();
+				u1.addMoneyToWallet(currUserId,amount);
 				}
 			}
 			else if(optStr.equalsIgnoreCase("8"))
@@ -114,7 +117,7 @@ public class RunPaymentsApp
 			}
 			else if(optStr.equalsIgnoreCase("9")) {
 				if( currUserId!= -1) {
-					System.out.println(ops.checkWalletBalance());
+					System.out.println(ops.checkWalletBalance(currUserId));
 				}else {
 					System.out.println("Please Log in to Check Balance In Wallet");
 				}
@@ -160,9 +163,7 @@ public class RunPaymentsApp
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		Wallet w=new Wallet();
-		int UserId=u.getUserId();
-		ListWallet.put(UserId, w);
+	
 	}
 	
 	public static boolean loginUser() {
@@ -253,29 +254,11 @@ public class RunPaymentsApp
 			
 		}
 	}
-private static void addMoneyToWallet() {
 	
-		
-	Wallet w=new Wallet();
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter amount : ");
-		double amount = sc.nextDouble();
-        w.setLimit(50000.00);
-		if(amount+w.getCurrntBal()<w.getLimit())
-		{
-			
-			UserOperations ops = new UserOperations();
-			ops.AddMoneyToWallet(amount);
-	
-			
-		}
-		else {
-			System.out.println("Maximum wallet amount is 50,000 ");
-		}
-		
+
 		 
 	}
 		
-	}
+	
 
 	
