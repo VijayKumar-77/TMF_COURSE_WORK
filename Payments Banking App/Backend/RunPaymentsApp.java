@@ -1,5 +1,3 @@
-
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,256 +6,285 @@ import java.util.Scanner;
 import java.util.Set;
 
 
-
 public class RunPaymentsApp 
 {
-	//Driver class
-
+//Driver class
 //	static int x=10;
 //	public static User[] usersList = new User[5];
 
-	public static List<User> usersList =new ArrayList<User>();
-	public static List<BankAccount> bankAcctList = new ArrayList<BankAccount>();
-	public static int currUserId = -1;
+public static List<User> UsersList =new ArrayList<User>();
+public static List<BankAccount> BAList = new ArrayList<BankAccount>();
+public static int CurrentUserId = -1;
  
    
-	 private static Map<Integer, Wallet> userWallets = new HashMap<>();
-	public static void main(String[] args) {
+private static Map<Integer, Wallet> UsersWallet = new HashMap<>();
+public static void main(String[] args) {
 		
 		int selectedOption=0;		
 		Scanner opt = new Scanner(System.in);
 		
 		while(true) {
+			System.out.println("           🏦      💲💲💲💲💲💲      🏦          ");
+			System.out.println("   <------- Payments App Options: ------->    ");
+			System.out.println("");
 			
-			System.out.println("Payments App Actions:");
-			System.out.println("1. Register New User");
-			System.out.println("2. Login");
-			System.out.println("3. ADD Bank Account");
-			System.out.println("4. List of Users");
-			System.out.println("5. Current User");
-			System.out.println("6. List All User Bank Accounts");
-			System.out.println("7. Add Money To Wallet");
-			System.out.println("8. Delet the BankAccount");
-			System.out.println("9. list User Wallet Balances");
-			System.out.println("10. Do a Transaction");
-			System.out.println("-1. Quit/ Logout");
+			System.out.println("1. New User? / Register.");
+			
+			System.out.println("2. Existing User? / Login.");
+			
+			System.out.println("3. ADD New Bank Account.");
+			
+			System.out.println("4. Display Users List.");
+			
+			System.out.println("5. Current Logged In User.");
+			
+			System.out.println("6. Show All Users Bank Accounts.");
+			
+			System.out.println("7. Add Your Money To Wallet.");
+			
+			System.out.println("8. Delete BankAccount.");
+			
+			System.out.println("9. Show Users Wallet Balance.");
+			
+			System.out.println("10. Make a Transaction.");
+			
+			System.out.println("11. Logout.");
+			
+			System.out.println("");
 			System.out.println("Choose an Option:");
 			
 			String optStr = opt.next();
-			try {
+		try {
 				selectedOption = Integer.parseInt(optStr);
 				
-			}catch(NumberFormatException e) {
+		}
+		catch(NumberFormatException e) {
 				e.printStackTrace();
 				e.getMessage();
-				System.out.println("Number format Error Occured Please choose another option.");
+				System.out.println("Number format Error Has Been Occured Please choose another option. Thank You");
 				
-			}catch(ArithmeticException e) {
+		}
+		catch(ArithmeticException e) {
 				e.printStackTrace();
 				e.getMessage();
-				System.out.println("arithmetic Error Occured Please choose another option.");
+				System.out.println("Arithmetic Error Has Been Occured Please choose another option. Thank You");
 				
-			}catch(Exception e) {
+		}
+		catch(Exception e) {
 				e.printStackTrace();
 				e.getMessage();
-				System.out.println("Some Error Occured Please choose another option.");
-			}finally{
+				System.out.println("Some Error has Been Occured Please choose another option. Thank You");
+		}
+		finally{
 				System.out.println();
 			}
 			
-			System.out.println("User selected "+selectedOption);
-			UserOperations ops = new UserOperations();
-			if(optStr.equalsIgnoreCase("1")) {
+			    System.out.println("User selected "+selectedOption);
+			    UserOperations ops = new UserOperations();
+		if(optStr.equalsIgnoreCase("1")) {
 				registerUser();
-			}else if(optStr.equalsIgnoreCase("2")) {
-			if(currUserId!=-1)
+		}
+		else if(optStr.equalsIgnoreCase("2")) {
+		if(CurrentUserId!=-1)
 			{
-				System.out.println("logout current user");
-			}else
+				System.out.println("Please logout From Current Logged In user");
+		}
+		else
 			{
-				if(!loginUser()) {
+		if(!loginUser()) {
 					break;
 				}
+			  }
 			}
-			}
-			else if(optStr.equalsIgnoreCase("3")) {
-				if(validateCurrentUser()) {
+		else if(optStr.equalsIgnoreCase("3")) {
+		if(validateCurrentUser()) {
 					addBankAccount();
 				}
-			}else if(optStr.equalsIgnoreCase("4")) {
-				ops.printUserList(usersList);
-			}else if(optStr.equalsIgnoreCase("5")) {
-				if(currUserId != -1) {
-					ops.printCurrUserDetails(currUserId);
+		}
+		else if(optStr.equalsIgnoreCase("4")) {
+				ops.printUserList(UsersList);
+		}
+		else if(optStr.equalsIgnoreCase("5")) {
+		if(CurrentUserId != -1) {
+					ops.printCurrUserDetails(CurrentUserId);
 				}
-			}else if(optStr.equalsIgnoreCase("6")) {
-				if(currUserId != -1) {
-					printUserBAnkAcctsList();
+		}
+		else if(optStr.equalsIgnoreCase("6")) {
+		if(CurrentUserId != -1) {
+					printUserBankAcctsList();
 				}
 			}
-			else if(optStr.equalsIgnoreCase("7"))
+		else if(optStr.equalsIgnoreCase("7"))
 			{
 				UserOperations u1=new UserOperations();
-				if(currUserId != -1) {
+		if(CurrentUserId != -1) {
 					Scanner sc=new Scanner(System.in);
-					double amount=sc.nextDouble();
-				u1.addMoneyToWallet(currUserId,amount);
+					double Amount=sc.nextDouble();
+				    u1.AddingMoneyToWallet(CurrentUserId,Amount);
 				}
 			}
-			else if(optStr.equalsIgnoreCase("8"))
+		else if(optStr.equalsIgnoreCase("8"))
 			{
-				if (currUserId != -1) {
+		if (CurrentUserId != -1) {
 			        Scanner scanner = new Scanner(System.in);
-			        System.out.println("Enter the account number to delete:");
-			        String accountNumber = scanner.next();
-			        ops.deleteBankAccount(currUserId, accountNumber);
-			    } else {
+			        System.out.println("Enter the AccountNumber to Delete:");
+			        String AccountNumber = scanner.next();
+			        ops.DeletingBankAccount(CurrentUserId, AccountNumber);
+			    }
+		else {
 			        System.out.println("No user logged in.");
 			    }
 			}
-			else if(optStr.equalsIgnoreCase("9")) {
-				if( currUserId!= -1) {
-					System.out.println(ops.checkWalletBalance(currUserId));
-				}else {
-					System.out.println("Please Log in to Check Balance In Wallet");
+		else if(optStr.equalsIgnoreCase("9")) {
+		if( CurrentUserId!= -1) {
+					System.out.println(ops.checkWalletBalance(CurrentUserId));
+				}
+		else {
+					System.out.println("Please Login to Check Wallet Balance");
 				}
 			}
-			else if(optStr.equalsIgnoreCase("10")) {
+			
+		else if(optStr.equalsIgnoreCase("10")) {
 				UserOperations u1=new UserOperations();
 				u1.DoTransaction();
 			}
-			else if(optStr.equalsIgnoreCase("-1")) {
-				currUserId=-1;
+			
+		else if(optStr.equalsIgnoreCase("11")) {
+			System.out.println("You Have Been logged Out Thank You 😄 ");
+				CurrentUserId=-1;
 				
-			}else {
+			}
+		else {
 				
 			}
 			
 		}
 	}
 	
-	public static void registerUser() {
-		Scanner opt = new Scanner(System.in);
-		UserOperations ops = new UserOperations();
+public static void registerUser() {
+		Scanner Options = new Scanner(System.in);
+		System.out.println("");
+		UserOperations Operations = new UserOperations();
 		
-		System.out.println("Please do provide user details as asked:");
-		System.out.println("First Name:");
-		String fName = opt.next();
-		System.out.println("Last Name:");
-		String lName = opt.next();
-		System.out.println("Phone Number:");
-		long phNo = Long.parseLong(opt.next());
-		System.out.println("Date Of Birth:");
-		String dob = opt.next();
-		System.out.println("Address:");
-		String addr = opt.next();
-		System.out.println("Password:");
-		String password = opt.next();
+		System.out.println("Please Provide Your Details As Shown Below:");
+		System.out.println("");
+		System.out.println("Enter First Name:");
+		String FirstName = Options.next();
+		System.out.println("Enter Last Name:");
+		String LastName = Options.next();
+		System.out.println("Enter Phone Number:");
+		long PhoneNo = Long.parseLong(Options.next());
+		System.out.println("Enter Date Of Birth:");
+		String DOB = Options.next();
+		System.out.println("Enter Address:");
+		String CommunicationAddress = Options.next();
+		System.out.println("Enter Password:");
+		String Password = Options.next();
 		
-		User u=null;
-		try {
+	    User Userdetails = null;
+	    try {
 			
-			u = ops.doUserRegistration(fName, lName, password, phNo, dob, addr);
+Userdetails = Operations.doUserRegistration(FirstName, LastName, Password, PhoneNo, DOB, CommunicationAddress);
 			
-			usersList.add(u);
-		} catch (Exception e) {
+			UsersList.add(Userdetails);
+		}
+	    catch (Exception e) {
 			e.printStackTrace();
 		}
 	
 	}
 	
-	public static boolean loginUser() {
-		Scanner opt = new Scanner(System.in);
+public static boolean loginUser() {
+		Scanner Option2 = new Scanner(System.in);
 		UserOperations ops = new UserOperations();
 		
 		System.out.println("UserId:");
-		String uId = opt.next();
+		String UserId = Option2.next();
 		System.out.println("Password:");
-		String password = opt.next();
-		if(ops.verifyUserLogin(uId, password)) {
-			currUserId = Integer.parseInt(uId);
+	   	String Password = Option2.next();
+	    if(ops.verifyUserLogin(UserId, Password)) {
+			CurrentUserId = Integer.parseInt(UserId);
 			return true;
-		}else {
+		}
+	    else {
 			System.out.println("Login Failed, Please Choose an Option:");
 			//break;
 			return false;
 		}
 	}
 	
-	public static boolean validateCurrentUser() {
-		if(currUserId != -1) {
+public static boolean validateCurrentUser() {
+	if(CurrentUserId != -1) {
 			return true;
-		}else {
+		}
+	    else {
 			return false;
 		}
 	}
 	
-	public static void addBankAccount() {
+public static void addBankAccount() {
 
-		BankAccount ba = new BankAccount();
-		Scanner opt = new Scanner(System.in);
+		BankAccount BankAccount = new BankAccount();
+		Scanner Option3 = new Scanner(System.in);
 		
 		System.out.println("Enter Bank Account Number:");
-		String acctNum = opt.next();
+		String AccountNumber = Option3.next();
 		
-		System.out.println("IFSC Code:");
-		String ifscCode = opt.next();
+		System.out.println("Enter IFSC Code:");
+		String IFSCCODE = Option3.next();
 		
-		System.out.println("Account Type: from List : ");
+		System.out.println(" Enter Account Type : ");
 		System.out.println("SA: SAVINGS");
 		System.out.println("CU: CURRENT");
 		System.out.println("LN: LOAN");
 		System.out.println("SL: SALARY");
-		try {
-			String Acty = opt.next();
-			AcctType Accty = AcctType.valueOf(Acty);
-			ba.setBankAcctAcctType(Accty);
-			}catch(IllegalArgumentException e) {
-				System.out.println("Please Select the Correct Acctype : ");
+	    try {
+			String Accounttype = Option3.next();
+			AccountType Type = AccountType.valueOf(Accounttype);
+			BankAccount.setBankAcctAcctType(Type);
+			}
+	    catch(IllegalArgumentException e) {
+				System.out.println("Please Select the Correct Account Type : ");
 				e.printStackTrace();
 			}
     
-		System.out.println("Account PIN:");
-//		
+		System.out.println("Enter Account PIN:");
+	
+		String AccountPin = Option3.next();
+		BankAccount.setBankAccountNumber(AccountNumber);
+		BankAccount.setIFSCNumber(IFSCCODE);
+		BankAccount.setBankAccountPin(AccountPin);
+		BankAccount.setUserId(CurrentUserId);
 		
-		String acctPin = opt.next();
-		
-		ba.setBankAcctNumber(acctNum);
-		ba.setBankAcctIFSC(ifscCode);
-		
-		ba.setBankAcctPin(acctPin);
-		ba.setUserId(currUserId);
-		
-		for(User u:usersList) {
-			if(u.getUserId() == currUserId) {
-				u.getBaList().add(ba);
+		for(User u:UsersList) {
+		if(u.getUserId() == CurrentUserId) {
+				u.getBankAccList().add(BankAccount);
 			}
 		}
 		
-		bankAcctList.add(ba);
+BAList.add(BankAccount);
 		
 	}
 	
-	public static void printUserBAnkAcctsList() {
+public static void printUserBankAcctsList() {
 		UserOperations ops = new UserOperations();
-		Map<User,List<BankAccount>> mapItems = ops.getUserBankAccounts();
+Map<User,List<BankAccount>> mapItems = ops.getUserBankAccounts();
 
-		for(User u:mapItems.keySet()) {
+	    for(User u:mapItems.keySet()) {
 			List<BankAccount> //baList = new ArrayList<BankAccount>();
 					baList = mapItems.get(u);
 			System.out.println(u);
-			if(baList != null) {
-				for(BankAccount ba: baList) {
-					System.out.println("--"+ba.printBankAccountDetails());
+	    if(baList != null) {
+	    for(BankAccount ba: baList) {
+	  	System.out.println("--"+ba.printBankAccountDetails());
+	  	
 				}
 			}
 			
 		}
 	}
-	
-
 		 
-	}
+}
 		
 	
 
