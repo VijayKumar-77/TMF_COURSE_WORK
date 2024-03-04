@@ -2,53 +2,53 @@
 
 public class BankAccount {
 	
-	private String bankAcctNumber;
-	private String bankAcctBankName;
-	private String bankAcctIFSC;
-	private AcctType bankAcctAcctType;
-	private String bankAcctPin;
+	private String   BankAccountNumber;
+	private String   BankAccountName;
+	private String   IFSCNumber;
+	private AccountType BankAccountType;
+	private String   BankAccountPin;
 	
-	private int userId;
+	private int UserId;
 	
 	public int getUserId() {
-		return userId;
+		return UserId;
 	}
 	public void setUserId(int userId) {
-		this.userId = userId;
+		this.UserId = userId;
 	}
-	public String getBankAcctNumber() {
-		return bankAcctNumber;
+	public String getBankAccountNumber() {
+		return getBankAccountNumber();
 	}
-	public void setBankAcctNumber(String bankAcctNumber) {
-		this.bankAcctNumber = bankAcctNumber;
+	public void setBankAccountNumber(String BankAccountNumber) {
+		this.BankAccountNumber = BankAccountNumber;
 	}
-	public String getBankAcctBankName() {
-		return bankAcctBankName;
+	public String getBankName() {
+		return getBankName();
 	}
-	public void setBankAcctBankName(String bankAcctBankName) {
-		this.bankAcctBankName = bankAcctBankName;
+	public void setBankName(String BankAccountName) {
+		this.BankAccountName = BankAccountName;
 	}
-	public String getBankAcctIFSC() {
-		return bankAcctIFSC;
+	public String getIFSCNumber() {
+		return IFSCNumber;
 	}
-	public void setBankAcctIFSC(String bankAcctIFSC) {
-		this.bankAcctIFSC = bankAcctIFSC;
+	public void setIFSCNumber(String IFSCNumber) {
+		this.IFSCNumber = IFSCNumber;
 	}
-	public AcctType getBankAcctAcctType() {
-		return bankAcctAcctType;
+	public AccountType getBankAccountType() {
+		return BankAccountType;
 	}
-	public void setBankAcctAcctType(AcctType bankAcctAcctType) {
-		this.bankAcctAcctType = bankAcctAcctType;
+	public void setBankAcctAcctType(AccountType BankAccountType) {
+		this.BankAccountType = BankAccountType;
 	}
-	public String getBankAcctPin() {
-		return bankAcctPin;
+	public String getBankAccountPin() {
+		return BankAccountPin;
 	}
-	public void setBankAcctPin(String bankAcctPin) {
-		this.bankAcctPin = bankAcctPin;
+	public void setBankAccountPin(String BankAccountPin) {
+		this.BankAccountPin = BankAccountPin;
 	}
 	
 	public String  printBankAccountDetails() {
-		return "[" +this.bankAcctNumber+","+this.bankAcctIFSC+ "]";
+		return "[" +this.BankAccountNumber+","+this.IFSCNumber+ "]";
 	}
 	
 }
