@@ -1,36 +1,35 @@
-
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+
 public class UserOperations {
 	
 	List<User> users = null;
-	List<BankAccount> bankAcctList = null;
+	List<BankAccount> BankAccountList = null;
 	  private static Map<Integer, Wallet> userWallets = new HashMap<>();
 	public UserOperations() {
-		users= RunPaymentsApp.usersList;
-		bankAcctList = RunPaymentsApp.bankAcctList;
+		users= RunPaymentsApp.UsersList;
+		BankAccountList = RunPaymentsApp.BAList;
 	}
 	
-	public User doUserRegistration(String fName, String lName, String password, long phNum, String dob,String addr) throws Exception {
-		User u = new User();
-		u.setFirstName(fName);
-		u.setLastName(lName);
-		u.setPhoneNum(phNum);
-		u.setDateOfBirth(dob);
-		u.setCommunicationAddr(addr);
-		u.setPassword(password);
+	public User doUserRegistration(String FirstName, String LastName, String Password, long PhoneNum, String DOB,String Address) throws Exception {
+		User User = new User();
+		User.setFirstName(FirstName);
+		User.setLastName(LastName );
+		User.setPhoneNum(PhoneNum);
+		User.setDateOfBirth(DOB);
+		User.setCommunicationAddr(Address);
+		User.setPassword(Password);
 		
-		if((fName+lName).length() >50) {
+		if((FirstName+LastName).length() >50) {
 			throw new Exception();
 		}
 		
-		u.setUserId((int)(Math.random()*1000)+100);
+		User.setUserId((int)(Math.random()*1000)+100);
 		PaymentsFileOps pfOps = new PaymentsFileOps();
-		pfOps.writeUserToFile(u);
-		return u;
+		pfOps.writeUserToFile(User);
+		return User;
 	}
 	
 	public void printUserList(List<User> users){
@@ -61,35 +60,36 @@ public class UserOperations {
 				System.out.println("No User Logged in.");
 			}
 		}
+	}
 //		for(int i=0;i<users.size();i++) {
 //			if(users.get(i).getUserId() != userId) {
 //				System.out.println(users.get(i));
 //				break;
 //			}
 //		}
-	}
 	
-	public Map<User,List<BankAccount>> getUserBankAccounts() {
-		
+	
+public Map<User,List<BankAccount>> getUserBankAccounts() {
 //		Map<User,BankAccount> userBankAcctMap = new HashMap<User,BankAccount>();
-		Map<User,List<BankAccount>> userBankAcctMap = new HashMap<User,List<BankAccount>>();
+	
+	   Map<User,List<BankAccount>> userBankAcctMap = new HashMap<User,List<BankAccount>>();
 		
 		for(User u:users) {
 			if(users != null) {
-				userBankAcctMap.put(u, u.getBaList());
+				userBankAcctMap.put(u, u.getBankAccList());
 			}
 		}
 		return userBankAcctMap;
 		
 	}
-	public void deleteBankAccount(int userId, String accountNumber) {
+	public void DeletingBankAccount(int userId, String AccountNumber) {
 	    for (User user : users) {
 	        if (user.getUserId() == userId) {
-	            List<BankAccount> userBankAccounts = user.getBaList();
+	            List<BankAccount> userBankAccounts = user.getBankAccList();
 	            for (BankAccount account : userBankAccounts) {
-	                if (account.getBankAcctNumber().equals(accountNumber)) {
+	                if (account.getBankAccountNumber().equals(AccountNumber)) {
 	                    userBankAccounts.remove(account);
-	                    System.out.println("Bank account deleted successfully.");
+	                    System.out.println("Your Bank account deleted successfully.");
 	                    return;
 	                }
 	            }
@@ -101,20 +101,20 @@ public class UserOperations {
 	}
 
 
-public static void addMoneyToWallet(int userId, double amount) {
-		 Wallet wallet = userWallets.getOrDefault(userId, new Wallet());
-		 wallet.setLimit(50000);
-		    if (wallet.getCurrntBal() + amount <= wallet.getLimit()) {
-		        wallet.setCurrntBal(wallet.getCurrntBal() + amount);
-		        userWallets.put(userId, wallet);
-		        System.out.println("New wallet balance for user " + userId + " is: " + wallet.getCurrntBal());
+public static void AddingMoneyToWallet(int userId, double amount) {
+		 Wallet Wallet = userWallets.getOrDefault(userId, new Wallet());
+		 Wallet.setLimit(50000);
+		    if (Wallet.getCurrntBal() + amount <= Wallet.getLimit()) {
+		        Wallet.setCurrntBal(Wallet.getCurrntBal() + amount);
+		        userWallets.put(userId, Wallet);
+		        System.out.println("New wallet balance for user " + userId + " is: " + Wallet.getCurrntBal());
 		        
 		        
 		        
 		    }
 		    
 		    else {
-		        System.out.println("Maximum wallet amount is " + wallet.getLimit());
+		        System.out.println("Maximum wallet amount is " + Wallet.getLimit());
 		    }
     }
 public double checkWalletBalance(int userId){
@@ -165,7 +165,7 @@ public void DoTransaction() {
             int uId=sc.nextInt();
             for (User user : users) {
                 if (user.getUserId() == uId) {
-                    Wallet senderWallet = userWallets.get(RunPaymentsApp.currUserId);
+                    Wallet senderWallet = userWallets.get(RunPaymentsApp.CurrentUserId);
                     if (senderWallet.getCurrntBal() >= amt) {
                         senderWallet.setCurrntBal(senderWallet.getCurrntBal() - amt);
                         Wallet receiverWallet = user.getWallet();
