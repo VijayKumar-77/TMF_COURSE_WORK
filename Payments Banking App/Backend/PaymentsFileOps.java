@@ -10,7 +10,7 @@ import java.util.List;
 
 
 public class PaymentsFileOps {
-	public final String usersFilePath = "C:\\Users\\VENU\\Desktop\\project50\\Payments_CLI_USers.csv";
+	public final String usersFilePath = "E:\\Payments project\\TMF_COURSE_WORK\\Payments Banking App\\Payments_CLI_USers.csv";
 	
 	public void writeUserToFile(User u) throws IOException {
 		
