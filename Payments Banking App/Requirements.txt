@@ -1,9 +1,0 @@
-REQUIREMENTS FOR PAYMENTS APP : 
-
--->  Creating an account / Registering an account (Name, Phone number, Address, E-mail, City).
--->  Login to account.
--->  Add an Bankaccount (User can add multiple bank accounts, optional).
--->  Add money to wallet (Deposit limit).
--->  Send money /Do a transaction (daily transaction limit, monthly transaction limit).
--->  Bank Statement.
--->  Refund the money.
