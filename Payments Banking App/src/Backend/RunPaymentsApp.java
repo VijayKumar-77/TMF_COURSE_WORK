@@ -28,30 +28,32 @@ public static void main(String[] args) {
 			System.out.println("   <------- Payments App Options: ------->    ");
 			System.out.println("");
 			
-			System.out.println("1. New User? / Register.");
+			System.out.println("1 . New User? / Register.");
 			
-			System.out.println("2. Existing User? / Login.");
+			System.out.println("2 . Existing User? / Login.");
 			
-			System.out.println("3. ADD New Bank Account.");
+			System.out.println("3 . ADD New Bank Account.");
 			
-			System.out.println("4. Display Users List.");
+			System.out.println("4 . Show Users List.");
 			
-			System.out.println("5. Current Logged In User.");
+			System.out.println("5 . Show Current Logged In User.");
 			
-			System.out.println("6. Show All Users Bank Accounts.");
+			System.out.println("6 . Show All Users Bank Accounts List.");
 			
-			System.out.println("7. Add Your Money To Wallet.");
+			System.out.println("7 . Add Money To Wallet.");
 			
-			System.out.println("8. Delete BankAccount.");
+			System.out.println("8 . Delete Bank Account.");
 			
-			System.out.println("9. Show Users Wallet Balance.");
+			System.out.println("9 . Show Users Wallet Balance.");
 			
-			System.out.println("10. Make a Transaction.");
+			System.out.println("10. Make A Transaction.");
 			
-			System.out.println("11. Logout.");
+			System.out.println("11. LOGOUT.");
+			
+			System.out.println("-1. EXIT APP.");
 			
 			System.out.println("");
-			System.out.println("Choose an Option:");
+			System.out.println("Please Select An Option From Above :");
 			
 			String optStr = opt.next();
 		try {
@@ -152,34 +154,41 @@ public static void main(String[] args) {
 		else if(optStr.equalsIgnoreCase("11")) {
 			System.out.println("You Have Been logged Out Thank You 😄 ");
 				CurrentUserId=-1;
-				
+		
 			}
-		else {
-				
+		else if(optStr.equalsIgnoreCase("-1"))
+		{
+			System.out.println("");
+System.out.println("You Have Been Exit Successfully !....Thank You.");	
+break;
 			}
 			
 		}
 	}
 	
 public static void registerUser() {
-		Scanner Options = new Scanner(System.in);
+		Scanner Opt = new Scanner(System.in);
 		System.out.println("");
 		UserOperations Operations = new UserOperations();
 		
 		System.out.println("Please Provide Your Details As Shown Below:");
 		System.out.println("");
 		System.out.println("Enter First Name:");
-		String FirstName = Options.next();
+		String FirstName = Opt.next();
 		System.out.println("Enter Last Name:");
-		String LastName = Options.next();
+		String LastName = Opt.next();
 		System.out.println("Enter Phone Number:");
-		long PhoneNo = Long.parseLong(Options.next());
+		long PhoneNo = Long.parseLong(Opt.next());
 		System.out.println("Enter Date Of Birth:");
-		String DOB = Options.next();
+		String DOB = Opt.next();
 		System.out.println("Enter Address:");
-		String CommunicationAddress = Options.next();
+		String CommunicationAddress = Opt.next();
 		System.out.println("Enter Password:");
-		String Password = Options.next();
+		String Password = Opt.next();
+		System.out.println("");
+		System.out.println("          You Have Been Successfully Registered !....Thank You.        ");
+		System.out.println("");
+		System.out.println("Want To Continue ? Please Select An Option Below");
 		
 	    User Userdetails = null;
 	    try {
