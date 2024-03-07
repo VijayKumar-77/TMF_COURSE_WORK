@@ -1,3 +1,5 @@
+package payments_app_cli.entity;
+
 
 
 public class BankAccount {
@@ -7,9 +9,15 @@ public class BankAccount {
 	private String   IFSCNumber;
 	private AccountType BankAccountType;
 	private String   BankAccountPin;
-	
 	private int UserId;
+	private double BankBalance;
 	
+	public double getBankBalance() {
+	 return BankBalance;
+	}
+	public void setBankBalance(double Balance) {
+		BankBalance = Balance;
+	}
 	public int getUserId() {
 		return UserId;
 	}
