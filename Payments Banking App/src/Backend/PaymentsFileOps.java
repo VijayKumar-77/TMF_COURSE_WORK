@@ -1,3 +1,5 @@
+package payments_app_cli;
+
 
 
 import java.io.BufferedReader;
@@ -8,9 +10,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import payments_app_cli.entity.User;
+
 
 public class PaymentsFileOps {
-	public final String usersFilePath = "E:\\Payments project\\TMF_COURSE_WORK\\Payments Banking App\\Payments_CLI_USers.csv";
+	public final String usersFilePath = "C:\\Users\\vijay\\Downloads\\Paymnets Main\\Payments_CLI_USers.csv";
 	
 	public void writeUserToFile(User u) throws IOException {
 		
