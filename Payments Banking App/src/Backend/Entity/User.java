@@ -1,3 +1,5 @@
+package payments_app_cli.entity;
+
 
 
 import java.util.ArrayList;
