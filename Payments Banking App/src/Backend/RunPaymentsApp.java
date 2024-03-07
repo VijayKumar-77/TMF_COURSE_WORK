@@ -1,3 +1,5 @@
+package payments_app_cli;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -5,19 +7,22 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
+import payments_app_cli.entity.AccountType;
+import payments_app_cli.entity.BankAccount;
+import payments_app_cli.entity.User;
+import payments_app_cli.entity.Wallet;
+
 
 public class RunPaymentsApp 
 {
 //Driver class
-//	static int x=10;
-//	public static User[] usersList = new User[5];
+
 
 public static List<User> UsersList =new ArrayList<User>();
 public static List<BankAccount> BAList = new ArrayList<BankAccount>();
 public static int CurrentUserId = -1;
  
-   
-private static Map<Integer, Wallet> UsersWallet = new HashMap<>();
+public static Map<Integer, Wallet> UsersWallet = new HashMap<Integer, Wallet>();
 public static void main(String[] args) {
 		
 		int selectedOption=0;		
@@ -122,7 +127,7 @@ public static void main(String[] args) {
 		if(CurrentUserId != -1) {
 					Scanner sc=new Scanner(System.in);
 					double Amount=sc.nextDouble();
-				    u1.AddingMoneyToWallet(CurrentUserId,Amount);
+				    u1.AddingMoneyToWallet(Amount);
 				}
 			}
 		else if(optStr.equalsIgnoreCase("8"))
@@ -134,12 +139,12 @@ public static void main(String[] args) {
 			        ops.DeletingBankAccount(CurrentUserId, AccountNumber);
 			    }
 		else {
-			        System.out.println("No user logged in.");
+			        System.out.println("No User Has logged In.");
 			    }
 			}
 		else if(optStr.equalsIgnoreCase("9")) {
 		if( CurrentUserId!= -1) {
-					System.out.println(ops.checkWalletBalance(CurrentUserId));
+					System.out.println("Your Current Balance Is :"  + ops.checkWalletBalance());
 				}
 		else {
 					System.out.println("Please Login to Check Wallet Balance");
@@ -196,6 +201,9 @@ public static void registerUser() {
 Userdetails = Operations.doUserRegistration(FirstName, LastName, Password, PhoneNo, DOB, CommunicationAddress);
 			
 			UsersList.add(Userdetails);
+			Wallet wallet=new Wallet();
+			int UserID =Userdetails.getUserId();
+			UsersWallet.put(UserID, wallet);
 		}
 	    catch (Exception e) {
 			e.printStackTrace();
