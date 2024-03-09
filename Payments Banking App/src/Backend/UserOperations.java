@@ -167,60 +167,60 @@ public void DoTransaction() {
         }
 
         if (txn.getTrnxDest() == TransactionDestination.WALLET) {
-            double amt = sc.nextDouble();
+            double amount = sc.nextDouble();
             int uId=sc.nextInt();
             for (User user : users) {
                 if (user.getUserId() == uId) {
                     Wallet senderWallet = UsersWallet.get(RunPaymentsApp.CurrentUserId);
-                    if (senderWallet.getCurrntBal() >= amt) {
-                        senderWallet.setCurrntBal(senderWallet.getCurrntBal() - amt);
+                    if (senderWallet.getCurrntBal() >= amount) {
+                        senderWallet.setCurrntBal(senderWallet.getCurrntBal() - amount);
                         Wallet receiverWallet =  UsersWallet.get(uId);
-                        receiverWallet.setCurrntBal(receiverWallet.getCurrntBal() + amt);
+                        receiverWallet.setCurrntBal(receiverWallet.getCurrntBal() + amount);
                         System.out.println("Transaction Success !!!!");
+                        
                     } else {
-                        System.out.println("Insufficient balance in wallet.");
+                        System.out.println("Insufficient balance in wallet !!!!");
                     }
                     return;
                 }
                 
             }
             
-        }
         System.out.println("Recipient Has Not Found....");
-    }else if (txn.getTrnxDest() == TransactionDestination.BANKACCOUNT) {
-        System.out.println("Enter recipient's bank account number:");
-        String recipientbankAccountNumber = sc.next();
-        for (User user : users) {
-            if (user.getUserId() == RunPaymentsApp.CurrentUserId) {
-                List<BankAccount> userBankAccounts = BankAccountList;
-                for (BankAccount account : userBankAccounts) {
-                    if (account.getIFSCNumber().equals(recipientbankAccountNumber)) {
-                        System.out.println("Enter amount:");
-                        double amount = sc.nextDouble();
-                        if (amount <= 0) {
-                            System.out.println("Invalid amount.");
+    }
+        else if (txn.getTrnxDest() == TransactionDestination.BANKACCOUNT) {
+            System.out.println("Enter recipient's bank account number:");
+            String recipientbankAccountNumber = sc.next();
+            for (User user : users) {
+                if (user.getUserId() == RunPaymentsApp.CurrentUserId) {
+                    List<BankAccount> userBankAccounts = BankAccountList;
+                    for (BankAccount account : userBankAccounts) {
+                        if (account.getBankAccountNumber().equals(recipientbankAccountNumber)) {
+                            System.out.println("Enter amount:");
+                            double amount = sc.nextDouble();
+                            if (amount <= 0) {
+                                System.out.println("Invalid amount.");
+                                return;
+                            }
+                            Wallet senderWallet = UsersWallet.get(RunPaymentsApp.CurrentUserId);
+                            if (senderWallet.getCurrntBal() >= amount) {
+                                senderWallet.setCurrntBal(senderWallet.getCurrntBal() - amount);
+                                account.setBankBalance(account.getBankBalance() + amount); 
+                                System.out.println("Transaction successful!");
+                            } else {
+                                System.out.println("Insufficient balance in wallet.");
+                            }
                             return;
                         }
-                        Wallet senderWallet = UsersWallet.get(RunPaymentsApp.CurrentUserId);
-                        if (senderWallet.getCurrntBal() >= amount) {
-                            senderWallet.setCurrntBal(senderWallet.getCurrntBal() - amount);
-                            account.setBankBalance(account.getBankBalance() + amount); // Increase balance in bank account
-                            System.out.println("Transaction successful!");
-                        } else {
-                            System.out.println("Insufficient balance in wallet.");
-                        }
-                        return;
                     }
+                    System.out.println("Recipient bank account not found.");
+                    return;
                 }
-                System.out.println("Recipient bank account not found.");
-                return;
             }
+            System.out.println("User not found.");
         }
-        System.out.println("User not found.");
-    }
-}
-
-
+  }
+ }
 }
 
 
