@@ -9,7 +9,7 @@ public class BankAccount {
 	private String   IFSCNumber;
 	private AccountType BankAccountType;
 	private String   BankAccountPin;
-	private int UserId;
+	private int      UserId;
 	private double BankBalance;
 	
 	public double getBankBalance() {
@@ -25,15 +25,15 @@ public class BankAccount {
 		this.UserId = userId;
 	}
 	public String getBankAccountNumber() {
-		return getBankAccountNumber();
+		return BankAccountNumber;
 	}
-	public void setBankAccountNumber(String BankAccountNumber) {
-		this.BankAccountNumber = BankAccountNumber;
+	public void setBankAccountNumber(String bankAccountNumber) {
+		this.BankAccountNumber = bankAccountNumber;
 	}
 	public String getBankName() {
 		return getBankName();
 	}
-	public void setBankName(String BankAccountName) {
+	public void setBankAccountName(String BankAccountName) {
 		this.BankAccountName = BankAccountName;
 	}
 	public String getIFSCNumber() {
