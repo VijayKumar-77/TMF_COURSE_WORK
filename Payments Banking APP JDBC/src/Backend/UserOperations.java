@@ -1,16 +1,11 @@
-package payments_app_cli;
+
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-import payments_app_cli.entity.BankAccount;
-import payments_app_cli.entity.Transaction;
-import payments_app_cli.entity.TransactionDestination;
-import payments_app_cli.entity.TransactionSource;
-import payments_app_cli.entity.User;
-import payments_app_cli.entity.Wallet;
+
 
 public class UserOperations {
 	
@@ -226,4 +221,3 @@ public void DoTransaction() {
 
 
        
-

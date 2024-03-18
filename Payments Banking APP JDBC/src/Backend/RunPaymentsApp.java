@@ -1,5 +1,6 @@
-package payments_app_cli;
 
+
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -7,10 +8,7 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
-import payments_app_cli.entity.AccountType;
-import payments_app_cli.entity.BankAccount;
-import payments_app_cli.entity.User;
-import payments_app_cli.entity.Wallet;
+
 
 
 public class RunPaymentsApp 
@@ -23,7 +21,7 @@ public static List<BankAccount> BAList = new ArrayList<BankAccount>();
 public static int CurrentUserId = -1;
  
 public static Map<Integer, Wallet> UsersWallet = new HashMap<Integer, Wallet>();
-public static void main(String[] args) {
+public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		
 		int selectedOption=0;		
 		Scanner opt = new Scanner(System.in);
@@ -97,12 +95,18 @@ public static void main(String[] args) {
 				System.out.println("Please logout From Current Logged In user");
 		}
 		else
-			{
-		if(!loginUser()) {
-					break;
-				}
-			  }
-			}
+		{ 
+			PaymentsBankingDAO login = new PaymentsBankingDAO();
+			login.verifyLoginDetails();
+		}
+		}
+//		else
+//			{
+//		if(!loginUser()) {
+//					break;
+//				}
+//			  }
+//			}
 		else if(optStr.equalsIgnoreCase("3")) {
 		if(validateCurrentUser()) {
 					addBankAccount();
@@ -172,6 +176,7 @@ break;
 	}
 	
 public static void registerUser() {
+	try {
 		Scanner Opt = new Scanner(System.in);
 		System.out.println("");
 		UserOperations Operations = new UserOperations();
@@ -195,14 +200,22 @@ public static void registerUser() {
 		System.out.println("");
 		System.out.println("Want To Continue ? Please Select An Option Below");
 		
-	    User Userdetails = null;
-	    try {
+	   
+User u  = Operations.doUserRegistration(FirstName, LastName, Password, PhoneNo, DOB, CommunicationAddress);
 			
-Userdetails = Operations.doUserRegistration(FirstName, LastName, Password, PhoneNo, DOB, CommunicationAddress);
+
+         	try {
+				PaymentsBankingDAO DAO = new PaymentsBankingDAO();
+				DAO.storeUserDetails(u);
+			}
+         	
+         	catch(Exception e) {
+				e.printStackTrace();
+			}
 			
-			UsersList.add(Userdetails);
+			UsersList.add(u);
 			Wallet wallet=new Wallet();
-			int UserID =Userdetails.getUserId();
+			int UserID =u.getUserId();
 			UsersWallet.put(UserID, wallet);
 		}
 	    catch (Exception e) {
@@ -211,25 +224,33 @@ Userdetails = Operations.doUserRegistration(FirstName, LastName, Password, Phone
 	
 	}
 	
-public static boolean loginUser() {
-		Scanner Option2 = new Scanner(System.in);
-		UserOperations ops = new UserOperations();
-		
-		System.out.println("UserId:");
-		String UserId = Option2.next();
-		System.out.println("Password:");
-	   	String Password = Option2.next();
-	    if(ops.verifyUserLogin(UserId, Password)) {
-			CurrentUserId = Integer.parseInt(UserId);
-			return true;
-		}
-	    else {
-			System.out.println("Login Failed, Please Choose an Option:");
-			//break;
-			return false;
-		}
-	}
-	
+//public void boolean loginUser() {
+//	try {
+//		PaymentsBankingDAO DAO = new PaymentsBankingDAO();
+//        DAO.verifyLoginDetails();
+//	}
+//	catch(Exception e) {
+//		e.printStackTrace();
+//	}
+//}
+//		Scanner Option2 = new Scanner(System.in);
+//		UserOperations ops = new UserOperations();
+//		
+//		System.out.println("UserId:");
+//		String UserId = Option2.next();
+//		System.out.println("Password:");
+//	   	String Password = Option2.next();
+//	    if(ops.verifyUserLogin(UserId, Password)) {
+//			CurrentUserId = Integer.parseInt(UserId);
+//			return true;
+//		}
+//	    else {
+//			System.out.println("Login Failed, Please Choose an Option:");
+//			//break;
+//			return false;
+//		}
+//	}
+//	
 public static boolean validateCurrentUser() {
 	if(CurrentUserId != -1) {
 			return true;
@@ -280,7 +301,17 @@ public static void addBankAccount() {
 		}
 		
 BAList.add(BankAccount);
-		
+try {
+	PaymentsBankingDAO DAO = new PaymentsBankingDAO ();
+	DAO.storeBankAcctDetails(BankAccount);
+	
+}
+catch(ClassNotFoundException e) {
+	e.printStackTrace();
+}
+catch(SQLException e) {
+	e.printStackTrace();
+}
 	}
 	
 public static void printUserBankAcctsList() {
