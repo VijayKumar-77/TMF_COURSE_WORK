@@ -96,8 +96,7 @@ public static void main(String[] args) throws ClassNotFoundException, SQLExcepti
 		}
 		else
 		{ 
-			PaymentsBankingDAO login = new PaymentsBankingDAO();
-			login.verifyLoginDetails();
+			loginUser();
 		}
 		}
 //		else
@@ -224,33 +223,30 @@ User u  = Operations.doUserRegistration(FirstName, LastName, Password, PhoneNo, 
 	
 	}
 	
-//public void boolean loginUser() {
-//	try {
-//		PaymentsBankingDAO DAO = new PaymentsBankingDAO();
-//        DAO.verifyLoginDetails();
-//	}
-//	catch(Exception e) {
-//		e.printStackTrace();
-//	}
-//}
-//		Scanner Option2 = new Scanner(System.in);
-//		UserOperations ops = new UserOperations();
-//		
-//		System.out.println("UserId:");
-//		String UserId = Option2.next();
-//		System.out.println("Password:");
-//	   	String Password = Option2.next();
-//	    if(ops.verifyUserLogin(UserId, Password)) {
-//			CurrentUserId = Integer.parseInt(UserId);
-//			return true;
-//		}
-//	    else {
-//			System.out.println("Login Failed, Please Choose an Option:");
-//			//break;
-//			return false;
-//		}
-//	}
-//	
+public static void  loginUser()   {
+	
+		Scanner Option2 = new Scanner(System.in);
+		UserOperations ops = new UserOperations();
+		System.out.println("Enter UserId:");
+		int UserId = Option2.nextInt();
+		System.out.println("Enter Password:");
+	   	String Password = Option2.next();
+	   	PaymentsBankingDAO db = new PaymentsBankingDAO();
+	    if(PaymentsBankingDAO.verifyLoginDetails(UserId, Password)) {
+			CurrentUserId = UserId;
+			
+			System.out.println("Login Success");
+	    }
+	    else {
+			System.out.println("Login Failed, Please Enter Correct Password:");
+			System.out.println("");
+			System.out.println("Please Select Login Option Again :");
+			System.out.println("");
+			
+			
+		}
+	
+}
 public static boolean validateCurrentUser() {
 	if(CurrentUserId != -1) {
 			return true;
@@ -330,9 +326,10 @@ Map<User,List<BankAccount>> mapItems = ops.getUserBankAccounts();
 			}
 			
 		}
-	}
-		 
+	
 }
+}
+
 		
 	
 
