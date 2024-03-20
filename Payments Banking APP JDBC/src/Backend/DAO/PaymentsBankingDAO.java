@@ -18,6 +18,7 @@ public class PaymentsBankingDAO {
 		stmt.executeUpdate(Query);
 		con.close();
 	}
+	
 	public void storeBankAcctDetails(BankAccount b) throws SQLException, ClassNotFoundException{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ Payments_Banking_App","root","root");
@@ -28,20 +29,57 @@ public class PaymentsBankingDAO {
 		stmt.executeUpdate(Query);
 		con.close();
 	}
-	public boolean verifyLoginDetails() throws SQLException, ClassNotFoundException{
+	
+	public static  boolean verifyLoginDetails(int uId ,String Password) {
+		try {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ Payments_Banking_App","root","root");
-		User u = new User();
 		Statement stmt = con.createStatement();
-		Scanner sc = new Scanner(System.in);
-		int uId = sc.nextInt();
 		System.out.println("Enter Your Password :");
-	    String Password = sc.next();
-		String Query ="select * from User_Details where User_ID = '"+u.getUserId()+"' AND Password = '"+u.getPassword()+"'";
-		ResultSet rs = stmt.executeQuery(Query);
-		boolean loginSuccessful =rs.next();
-		return loginSuccessful;
+		String Query ="select User_ID,Password from User_Details";
+		ResultSet res = stmt.executeQuery(Query);
+		System.out.println();
+		while (res.next()) {
+			if(res.getInt("User_ID")== uId && res.getString("Password").equals(Password)) {
+				
+				return true;
+			}
+		}
+		
+		con.close();
 	}
+	catch(SQLException  | ClassNotFoundException e) {
+		
+		e.printStackTrace();
+	}
+		
+		return false;
+	}
+	
+	public void storeUsersList() throws ClassNotFoundException, SQLException {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ Payments_Banking_App","root","root");
+		Statement stmt = con.createStatement();
+		String Query ="select * from USer_Details";
+		ResultSet res = stmt.executeQuery(Query);
+		while(res.next()) {
+			System.out.println(res.getInt(1)+""+res.getString(2));
+		}
+		con.close();
+	}
+	
+	public void storeCurrLoginUser() throws ClassNotFoundException, SQLException {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ Payments_Banking_App","root","root");
+		Statement stmt = con.createStatement();
+		String Query="select * from User_Details where User_ID ='"+RunPaymentsApp.CurrentUserId+"'";
+		ResultSet res = stmt.executeQuery(Query);
+		while(res.next()) {
+			System.out.println(res.getInt(1)+""+res.getString(2));
+		}
+		con.close();
+	}
+	
 }
 
 
