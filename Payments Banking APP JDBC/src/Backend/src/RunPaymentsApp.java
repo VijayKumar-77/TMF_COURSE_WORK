@@ -126,7 +126,7 @@ public static void main(String[] args) throws ClassNotFoundException, SQLExcepti
 			}
 		else if(optStr.equalsIgnoreCase("7"))
 			{
-				UserOperations u1=new UserOperations();
+				UserOperations u1 = new UserOperations();
 		if(CurrentUserId != -1) {
 					Scanner sc=new Scanner(System.in);
 					double Amount=sc.nextDouble();
