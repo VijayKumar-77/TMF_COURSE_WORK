@@ -106,11 +106,13 @@ public Map<User,List<BankAccount>> getUserBankAccounts() {
 
 
 public void AddingMoneyToWallet(double amount) {
-		if(UsersWallet.containsKey(RunPaymentsApp.CurrentUserId)) 
-		UsersWallet.get(RunPaymentsApp.CurrentUserId).setCurrntBal(UsersWallet.get(RunPaymentsApp.CurrentUserId).getCurrntBal() + amount);{
-		System.out.println(UsersWallet.get(RunPaymentsApp.CurrentUserId).getCurrntBal());
+		    try {
+		    	PaymentsBankingDAO DAO = new PaymentsBankingDAO();
+				DAO.addingMoneyToWallet(amount);
 		    }
-		    
+		    catch (Exception e){
+		    	e.printStackTrace();
+		    }
 	}
     
 public double checkWalletBalance(){
