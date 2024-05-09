@@ -45,6 +45,8 @@
 <a href="https://spring.io/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/springio/springio-icon.svg" alt="spring" width="40" height="40"/> </a> </p>
 <p><img align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=vijju-7&show_icons=true&locale=en&layout=compact" alt="vijju-7" /></p>
 <p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=vijju-7&" alt="vijju-7" /></p>
+![Snake animation]
+(https://github.com/thepiyushmalhotra/thepiyushmalhotra/blob/output/github-contribution-grid-snake.svg)
 
 
                                                                         
