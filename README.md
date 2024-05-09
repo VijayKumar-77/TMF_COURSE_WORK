@@ -5,8 +5,9 @@
                   ----------// A - PASSIONATE - JAVA - FULL - STACK - DEVELOPER  //----------
                                                                          
                                                                          
-                                                              
 
+                                                              
+(https://github.com/VIJJU-7/VIJJU-7blob/output/github-contribution-grid-snake.svg)
 <p align="left"> <a href="https://twitter.com/alone_its_me" target="blank"><img src="https://img.shields.io/twitter/follow/alone_its_me?logo=twitter&style=for-the-badge" alt="alone_its_me" /></a> </p>
 
 🔭 I’m currently working on : &nbsp;&nbsp;&nbsp;&nbsp;   **Payments Banking APP**
@@ -45,8 +46,8 @@
 <a href="https://spring.io/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/springio/springio-icon.svg" alt="spring" width="40" height="40"/> </a> </p>
 <p><img align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=vijju-7&show_icons=true&locale=en&layout=compact" alt="vijju-7" /></p>
 <p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=vijju-7&" alt="vijju-7" /></p>
-![Snake animation]
-(https://github.com/VIJJU-7/VIJJU-7blob/output/github-contribution-grid-snake.svg)
+
+
 
 
                                                                         
