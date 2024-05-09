@@ -46,7 +46,7 @@
 <p><img align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=vijju-7&show_icons=true&locale=en&layout=compact" alt="vijju-7" /></p>
 <p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=vijju-7&" alt="vijju-7" /></p>
 ![Snake animation]
-(https://github.com/thepiyushmalhotra/VIJJU-7blob/output/github-contribution-grid-snake.svg)
+(https://github.com/VIJJU-7/VIJJU-7blob/output/github-contribution-grid-snake.svg)
 
 
                                                                         
