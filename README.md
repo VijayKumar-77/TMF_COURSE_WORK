@@ -1,12 +1,3 @@
-                                           V.VIJAY KUMAR                            
-                                                                     
-                                                                     
-                                                                    
-                  ----------// A - PASSIONATE - JAVA - FULL - STACK - DEVELOPER  //----------
-                                                                         
-                                                                         
-
-                                                              
 <h1 align="center">Hi 👋, I'm V. VIJAY KUMAR</h1>
 <h3 align="center">A Passionate Full Stack Developer....</h3>
 
